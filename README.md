@@ -68,7 +68,8 @@ After that, you will get a JSON file like this:
 }
 
 
-DESCRIPTION OF MAIN FUNCTIONALITY:
+# DESCRIPTION OF MAIN FUNCTIONALITY
+
 When creating a user to create a model in the Order table with their user_id and dish_id being null and the day of the week.
 To access the daily menu, you need to make a GET request for url="http://127.0.0.1:8000/api/v1/daily/"
 and send the access key in the request headers
