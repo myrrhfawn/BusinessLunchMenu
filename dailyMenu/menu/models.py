@@ -23,4 +23,6 @@ class Menu(models.Model):
 
 class Order(models.Model):
     user_id = models.IntegerField()
-    dish_id = models.ForeignKey('Menu', on_delete=models.PROTECT, null=True)
+    dish = models.ForeignKey('Menu', on_delete=models.PROTECT, null=True)
+    day = models.CharField(null=True)
+

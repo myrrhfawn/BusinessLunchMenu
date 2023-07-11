@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from menu.views import MenuAPIView, DailyAPIView, RegisterAPI, ChoiceAPI
+from menu.views import MenuAPIView, DailyAPIView, RegisterAPI, ChoiceAPI,DailyRequestAPIView
 from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView, TokenVerifyView
 from django.views.decorators.csrf import csrf_exempt
 
@@ -30,4 +30,5 @@ urlpatterns = [
     path('api/v1/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('api/v1/register/', RegisterAPI.as_view()),
     path('api/v1/choice/', ChoiceAPI.as_view()),
+    path('api/v1/dailyrequest', DailyRequestAPIView.as_view())
 ]
