@@ -1,7 +1,5 @@
 import datetime
-
 from rest_framework import serializers
-from rest_framework.fields import CurrentUserDefault
 from .models import Menu, Order
 from django.contrib.auth.models import User
 
@@ -9,12 +7,14 @@ from django.contrib.auth.models import User
 class MenuSerializer(serializers.ModelSerializer):
     class Meta:
         model = Menu
-        fields = ('id', 'title', 'description', 'days', 'price')
+        fields = "__all__"
+
+
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'password', 'first_name', 'last_name')
+        fields =  "__all__"
         extra_kwargs = {
             'password': {'write_only': True},
         }
@@ -46,9 +46,7 @@ class ChoiceSerializer(serializers.ModelSerializer):
         return order
 
     def update(self, instance, validated_data):
-        print(instance.day)
         instance.dish = validated_data.get("dish", instance.dish)
-        print(validated_data.get("dish", instance.dish))
         instance.save()
         return instance
 

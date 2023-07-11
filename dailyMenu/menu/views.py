@@ -1,12 +1,9 @@
 import datetime
-from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from .models import Menu, Order
 from .serializer import MenuSerializer, RegisterSerializer, UserSerializer, ChoiceSerializer, DailyRequestSerializer
-from django.contrib.auth.models import User
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
 
 # Create your views here.
@@ -16,12 +13,25 @@ class MenuAPIView(generics.ListAPIView):
     serializer_class = MenuSerializer
     permission_classes = (IsAuthenticated, )
 
+class MenuV2APIView(generics.ListAPIView):
+    queryset = Menu.objects.all().values()
+    serializer_class = MenuSerializer
+    permission_classes = (IsAuthenticated, )
+
 class DailyAPIView(generics.ListAPIView):
     now = datetime.datetime.now()
     day = now.strftime("%a")
     queryset = Menu.objects.filter(days__contains=day).values()
     serializer_class = MenuSerializer
-    permission_classes = (IsAuthenticated, )
+    #permission_classes = (IsAuthenticated, )
+    if day == "Sun":
+        orders = Order.objects.all()
+        for order in orders:
+            order.day = None
+            order.save()
+
+        print(orders[0].day)
+
 
 class RegisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
