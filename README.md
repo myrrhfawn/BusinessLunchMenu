@@ -98,6 +98,7 @@ response = requests.request("GET", url, headers=headers, data=payload)
 To choose a dish from the daily menu, you need to make a PUT request to 
 url="http://127.0.0.1:8000/api/v1/choice/"
 with access keys in the headers and id of the chosen dish in the body of the request.
+every Sunday the order table is reset.
 
 Example:
 url = "http://localhost:8000/api/v1/choice/"
@@ -129,6 +130,5 @@ headers = {
 response = requests.request("GET", url, headers=headers, data=payload)
 
 At the expense of version control, I didn't have time to finish them correctly, so I just made two api urls that process data differently without checking the version in the request.
-
 
 
