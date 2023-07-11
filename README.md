@@ -133,3 +133,4 @@ response = requests.request("GET", url, headers=headers, data=payload)
 At the expense of version control, I didn't have time to finish them correctly, so I just made two api urls that process data differently without checking the version in the request.
 
 
+Regarding the docker container: I tried to build the project, but for some reason docker does not start on my PC due to ERROR:Docker Desktop is unable to detect a Hypervisor. I turned on virtualization in bios, but the problem does not disappear and I don't have time to solve it, so I leave the project as it is and one of these days I will try to finish it for myself.
