@@ -118,14 +118,15 @@ response = requests.request("PUT", url, headers=headers, data=payload, files=fil
 FOR STAFF:
 To get a list of selected dishes for today, you need to make GET requests to url="http://127.0.0.1:8000/api/v1/dailyrequest/" 
 with access keys in the headers (admin only)
-
+Також для цього запиту можна додати в заголовок версію додатку і в залежності від неї отримати лише id(v1 - стара версія) або об'єкт класа menu(v2 - нова версія).
 
 Example:
 url = "http://127.0.0.1:8000/api/v1/dailyrequest/"
 
 payload = {}
 headers = {
-  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg5MDg2MDczLCJpYXQiOjE2ODkwODU3NzMsImp0aSI6IjA5YWUyNmI1MzgyZTRmYzU4NTJiMmQ3OGY0MmI4YmY0IiwidXNlcl9pZCI6MX0.iyGtnkxMjcBvpvHuhVR4A7s4nJYgOgCeszybJmW9NSY'
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg5MDg2MDczLCJpYXQiOjE2ODkwODU3NzMsImp0aSI6IjA5YWUyNmI1MzgyZTRmYzU4NTJiMmQ3OGY0MmI4YmY0IiwidXNlcl9pZCI6MX0.iyGtnkxMjcBvpvHuhVR4A7s4nJYgOgCeszybJmW9NSY',
+  'Version': "v2"
 }
 
 response = requests.request("GET", url, headers=headers, data=payload)
@@ -133,4 +134,14 @@ response = requests.request("GET", url, headers=headers, data=payload)
 At the expense of version control, I didn't have time to finish them correctly, so I just made two api urls that process data differently without checking the version in the request.
 
 
-Regarding the docker container: I tried to build the project, but for some reason docker does not start on my PC due to ERROR:Docker Desktop is unable to detect a Hypervisor. I turned on virtualization in bios, but the problem does not disappear and I don't have time to solve it, so I leave the project as it is and one of these days I will try to finish it for myself.
+# INSTALLATION:
+To run the project, you need to clone it to your computer.
+After that, start the container with the database using docker-compose:
+
+docker-compose -f docker-compose.dev.yml up
+
+Then, in a new terminal window, run the Django project:
+
+python manage.py runserver
+
+After that you can send requests.
