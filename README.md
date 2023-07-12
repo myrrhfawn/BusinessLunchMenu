@@ -145,3 +145,7 @@ Then, in a new terminal window, run the Django project:
 python manage.py runserver
 
 After that you can send requests.
+
+admin data:
+login: rostyk
+password: 1234
