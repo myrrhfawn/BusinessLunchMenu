@@ -5,7 +5,7 @@ services:
     image: postgres:15
     container_name: daily_postgres
     volumes:
-      - ~/.pg/pg_data/dm:/var/lib/postgresql/data
+      - ./postgres_data/:/var/lib/postgresql/data
     env_file:
       - .env
     ports:
