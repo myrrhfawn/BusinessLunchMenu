@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from .models import Menu, Order
 from .serializer import MenuSerializer, RegisterSerializer, UserSerializer, ChoiceSerializer, DailyRequestSerializer
-
+from django.forms.models import model_to_dict
 
 # Create your views here.
 
@@ -13,10 +13,6 @@ class MenuAPIView(generics.ListAPIView):
     serializer_class = MenuSerializer
     permission_classes = (IsAuthenticated, )
 
-class MenuV2APIView(generics.ListAPIView):
-    queryset = Menu.objects.all().values()
-    serializer_class = MenuSerializer
-    permission_classes = (IsAuthenticated, )
 
 class DailyAPIView(generics.ListAPIView):
     now = datetime.datetime.now()
@@ -75,4 +71,25 @@ class DailyRequestAPIView(generics.ListAPIView):
     day = now.strftime("%a")
     queryset = Order.objects.filter(day__contains=day)
     serializer_class = DailyRequestSerializer
-    permission_classes = (IsAuthenticated, IsAdminUser)
+    # permission_classes = (IsAuthenticated, IsAdminUser)
+
+    def list(self, request):
+        try:
+            version = request.headers["version"]
+        except:
+            version = "v1"
+
+        if version == "v2":
+            queryset = self.get_queryset()
+            response = []
+            for query in queryset:
+                response.append(
+                    dict(id=query.id,
+                         user_id=query.user_id,
+                         day=query.day,
+                         dish=model_to_dict(Menu.objects.get(pk=query.dish_id))))
+            return Response(response)
+        else:
+            queryset = self.get_queryset()
+            serializer = DailyRequestSerializer(queryset, many=True)
+            return Response(serializer.data)
