@@ -136,7 +136,7 @@ At the expense of version control, I didn't have time to finish them correctly, 
 
 # INSTALLATION:
 To run the project, you need to clone it to your computer.
-After that, start the container with the database using docker-compose:
+After that, start the container with the database using docker-compose from root directory(dailyMenu):
 
 docker-compose -f docker-compose.dev.yml up
 
