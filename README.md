@@ -118,7 +118,7 @@ response = requests.request("PUT", url, headers=headers, data=payload, files=fil
 FOR STAFF:
 To get a list of selected dishes for today, you need to make GET requests to url="http://127.0.0.1:8000/api/v1/dailyrequest/" 
 with access keys in the headers (admin only)
-Також для цього запиту можна додати в заголовок версію додатку і в залежності від неї отримати лише id(v1 - стара версія) або об'єкт класа menu(v2 - нова версія).
+Also, for this request, you can add the version of the application to the header and, depending on it, get only the id (v1 - old version) or an object of the menu class (v2 - new version).
 
 Example:
 url = "http://127.0.0.1:8000/api/v1/dailyrequest/"
