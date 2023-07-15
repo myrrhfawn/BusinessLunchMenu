@@ -138,7 +138,7 @@ At the expense of version control, I didn't have time to finish them correctly, 
 To run the project, you need to clone it to your computer.
 After that, start the container with the database using docker-compose from root directory(dailyMenu):
 
-docker-compose -f docker-compose.dev.yml up
+docker-compose -f docker-compose.yml up
 
 Then, in a new terminal window, run the Django project:
 
