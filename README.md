@@ -135,7 +135,8 @@ At the expense of version control, I didn't have time to finish them correctly, 
 
 
 # INSTALLATION:
-1. To run the project, you need to clone it to your computer.
+
+To run the project, you need to clone it to your computer.
 then go to the dailyMenu directory and run the container:
 
 docker compose up
