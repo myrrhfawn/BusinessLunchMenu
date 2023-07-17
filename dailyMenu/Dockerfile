@@ -23,4 +23,4 @@ RUN pip install -r requirements.txt
 
 USER dm
 
-CMD python manage.py runserver
+CMD ["python", "manage.py", "runserver"]
