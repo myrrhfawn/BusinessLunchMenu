@@ -54,7 +54,7 @@ class ChoiceAPI(generics.GenericAPIView):
         })
 
     def put(self, request, *args, **kwargs):
-
+        print(request.user.id)
         try:
             instance = Order.objects.get(user_id=request.user.id)
         except:
