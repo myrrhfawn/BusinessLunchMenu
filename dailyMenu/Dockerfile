@@ -23,4 +23,4 @@ RUN pip install -r requirements.txt
 
 USER dm
 
-CMD ["python", "manage.py", "runserver"]
+CMD gunicorn dailyMenu.wsgi:application -b 0.0.0.0:8000

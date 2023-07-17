@@ -16,7 +16,7 @@ services:
       timeout: 5s
       retries: 5
   django:
-    image: daily_menu:latest
+    build: .
     container_name: daily_django
     depends_on:
       db:
@@ -27,7 +27,7 @@ services:
     env_file:
       - .env
     command: >
-      bash -c "python manage.py runserver 0.0.0.0:8000"
+      bash -c "gunicorn dailyMenu.wsgi:application -b 0.0.0.0:8000"
     ports:
       - 8000:8000
 
