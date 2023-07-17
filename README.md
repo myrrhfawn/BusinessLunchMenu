@@ -136,32 +136,16 @@ At the expense of version control, I didn't have time to finish them correctly, 
 
 # INSTALLATION:
 1. To run the project, you need to clone it to your computer.
-After that, start the container with the database using docker-compose from root directory(dailyMenu):
+then go to the dailyMenu directory and run the container:
 
-docker-compose -f docker-compose.yml up
-2. Install requirements
+docker compose up
 
-pip install -r requirements.txt
+And after the Django project starts, you can use the application at localhost:8000.
+You can create your own user or use superuser data:
 
-3. Then, in a new terminal window, run the Django project:
+login:rostyk
+pass:1234
 
-python manage.py migrate
-
-python manage.py runserver
-
-Next, you need to create a super user
-
-ptyhon
-
-
-python3 manage.py createsuperuser
-
-and enter the necessary data
-
-4. At the address http://127.0.0.1:8000/admin/ add the necessary dishes for your menu.
-   
-
-After that you can send requests.
- 
+Thanks!
 
 
